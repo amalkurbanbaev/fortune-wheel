@@ -3,9 +3,9 @@
   "homepage": "https://amalkurbanbaev.github.io/fortune-wheel/",
   "scripts": {
     "build": "tsc -b && vite build",
-    "predeploy": "npm run build",
+    "predeploy": "yarn build",
     "deploy": "gh-pages -d dist",
-    "dev": "vite",
+    "dev": "vite --host",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -13,6 +13,7 @@
     "@fontsource-variable/inter": "^5.0.20",
     "@radix-ui/react-slot": "^1.1.0",
     "@twa-dev/sdk": "^7.8.0",
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.428.0",
