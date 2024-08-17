@@ -6,7 +6,7 @@ import react from "@vitejs/plugin-react";
 
 // eslint-disable-next-line import/no-default-export -- must be default export
 export default defineConfig({
-  base: "/fortune-wheel",
+  base: "/fortune-wheel/",
   plugins: [react()],
   resolve: {
     alias: {
