@@ -10,14 +10,14 @@ export function App() {
 
   return (
     <>
-      <h1>Vite + React</h1>
+      <h1>Vite + React !!!</h1>
       <div className="">
         <Button
           onClick={() => {
             setCount((prev) => prev + 1);
           }}
         >
-          count is {count}
+          count is {count} !!!
         </Button>
       </div>
       {/* Here we add our button with alert callback */}
