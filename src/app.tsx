@@ -17,7 +17,7 @@ export function App() {
             setCount((prev) => prev + 1);
           }}
         >
-          count is {count} !!!
+          count is {count}
         </Button>
       </div>
       {/* Here we add our button with alert callback */}
