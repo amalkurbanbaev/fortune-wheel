@@ -485,6 +485,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fontsource-variable/inter@npm:^5.0.20":
+  version: 5.0.20
+  resolution: "@fontsource-variable/inter@npm:5.0.20"
+  checksum: 10c0/6a9969019c4c0aab22189069d4483ec370257adfb4d0cff8c4cf72be25e63741408f20b577cb6955282b21c3691384d4700d83d0bcef33250cb024fecc07a47c
+  languageName: node
+  linkType: hard
+
+"@fontsource/inter@npm:^5.0.8":
+  version: 5.0.20
+  resolution: "@fontsource/inter@npm:5.0.20"
+  checksum: 10c0/eca49266e8d0a7ef39fb0eee773c9660ac9edf15e47a355a2cf4a14d4ac8a0755b2f304df719961ae29370f4a9a59c020f678fdc2b8c2e38d06ef6510e655f2a
+  languageName: node
+  linkType: hard
+
 "@humanwhocodes/config-array@npm:^0.11.14":
   version: 0.11.14
   resolution: "@humanwhocodes/config-array@npm:0.11.14"
@@ -3593,6 +3607,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "fortune-wheel@workspace:."
   dependencies:
+    "@fontsource-variable/inter": "npm:^5.0.20"
+    "@fontsource/inter": "npm:^5.0.8"
     "@ianvs/prettier-plugin-sort-imports": "npm:^4.3.1"
     "@radix-ui/react-slot": "npm:^1.1.0"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
