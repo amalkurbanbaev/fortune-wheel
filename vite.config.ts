@@ -1,4 +1,4 @@
-import { resolve } from "node:path";
+import path from "node:path";
 
 import { defineConfig } from "vite";
 
@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
-      "@": resolve("/src"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });
