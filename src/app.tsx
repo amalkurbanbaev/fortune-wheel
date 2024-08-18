@@ -7,7 +7,7 @@ export function App() {
     <div className="flex h-full flex-col">
       <AppHeader />
 
-      <main className="container flex h-full overflow-hidden py-3">
+      <main className="container flex h-full max-w-[500px] overflow-hidden py-3">
         <WheelOfFortune prizes={prizesMock} />
       </main>
     </div>
