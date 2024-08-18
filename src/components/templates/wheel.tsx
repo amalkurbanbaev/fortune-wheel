@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment -- known issue, https://github.com/pmndrs/react-spring/issues/1784  */
 import { useRef, useState } from "react";
 
 import { animated, useSpring } from "@react-spring/konva";
@@ -72,8 +73,6 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
     });
   };
 
-  const AnimatedGroup = animated.Group;
-
   return (
     <div className="relative size-[400px]">
       <div className="absolute right-0 top-0">
@@ -89,7 +88,9 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
         className={cn("transition-all", isLoading ? "scale-95 animate-pulse" : "scale-100")}
       >
         <Layer>
-          <AnimatedGroup ref={wheelRef} x={200} y={200} rotation={springProps.rotation}>
+          {/* // eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+          {/* @ts-ignore */}
+          <animated.Group ref={wheelRef} x={200} y={200} rotation={springProps.rotation}>
             {prizes.map((prize, index) => {
               const startAngle = anglePerSegment * index - 90;
               return (
@@ -127,7 +128,7 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
                 />
               );
             })}
-          </AnimatedGroup>
+          </animated.Group>
           <RegularPolygon
             x={200}
             y={0}
