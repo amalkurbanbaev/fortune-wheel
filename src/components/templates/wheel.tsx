@@ -23,14 +23,41 @@ const config = {
 
 export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
   const [isLoading, setIsLoading] = useState(false);
-
   const wheelRef = useRef(null);
   const [isSpinning, setIsSpinning] = useState(false);
   const [currentRotation, setCurrentRotation] = useState(0); // Начальное положение
   const [finalRotation, setFinalRotation] = useState(0); // Финальное вращение
 
+  const [multiplier, setMultiplier] = useState<number | null>(null);
+  const [displayedPrize, setDisplayedPrize] = useState<number>(0);
   const segments = prizes.length;
   const anglePerSegment = 360 / segments;
+
+  const calculateFinalPrize = (idx: number) => {
+    const basePrize = prizes[idx].value; // Предполагается, что у каждого приза есть поле value
+    const randomMultiplier = getRandomInt(1, 5);
+
+    const finalAmount = basePrize * randomMultiplier;
+    setMultiplier(randomMultiplier > 1 ? randomMultiplier : null);
+
+    animatePrize(finalAmount);
+  };
+
+  const animatePrize = (targetValue: number) => {
+    let currentValue = 0;
+    const duration = 1000; // Продолжительность анимации 1 секунда
+    const stepTime = duration / targetValue;
+
+    const step = () => {
+      if (currentValue < targetValue) {
+        currentValue++;
+        setDisplayedPrize(currentValue);
+        setTimeout(step, stepTime);
+      }
+    };
+
+    step();
+  };
 
   const [springProps, api] = useSpring(() => ({
     rotation: currentRotation,
@@ -40,7 +67,6 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
     config,
     onRest: () => {
       setIsSpinning(false);
-      // Обновляем текущее вращение после завершения анимации
       setCurrentRotation((currentRotation + finalRotation) % 360);
     },
   }));
@@ -49,18 +75,20 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
     if (isSpinning) return;
 
     setIsLoading(true);
+    setMultiplier(null);
+    setDisplayedPrize(0);
 
     mockApiCall().then((res) => {
       const sectorIndex = res - 1;
       setIsLoading(false);
 
       const targetAngle = sectorIndex * anglePerSegment;
-
       const offset = -(anglePerSegment / 2);
-
       const newFinalRotation = 360 * 4 + (offset - targetAngle);
 
       setFinalRotation(newFinalRotation);
+
+      calculateFinalPrize(res - 1);
 
       api.start({
         from: { rotation: currentRotation },
@@ -157,6 +185,12 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
           </Layer>
         </Stage>
       </div>
+
+      <div className="mt-4 text-center">
+        <h2>Выигрыш умножен на {multiplier}x!</h2>
+        <div className="text-4xl font-bold">{displayedPrize}</div>
+      </div>
+
       <Button className="h-14 w-full" onClick={handleSpin} disabled={isSpinning}>
         Roll!
       </Button>
@@ -172,3 +206,7 @@ const mockApiCall = async (): Promise<number> => {
     }, 30); // Эмулируем задержку в 1 секунду
   });
 };
+
+function getRandomInt(min: number, max: number) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
