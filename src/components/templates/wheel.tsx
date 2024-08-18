@@ -72,6 +72,8 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
     });
   };
 
+  const AnimatedGroup = animated.Group;
+
   return (
     <div className="relative size-[400px]">
       <div className="absolute right-0 top-0">
@@ -87,7 +89,7 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
         className={cn("transition-all", isLoading ? "scale-95 animate-pulse" : "scale-100")}
       >
         <Layer>
-          <animated.Group ref={wheelRef} x={200} y={200} rotation={springProps.rotation}>
+          <AnimatedGroup ref={wheelRef} x={200} y={200} rotation={springProps.rotation}>
             {prizes.map((prize, index) => {
               const startAngle = anglePerSegment * index - 90;
               return (
@@ -125,7 +127,7 @@ export function WheelOfFortune({ prizes }: WheelOfFortuneProps) {
                 />
               );
             })}
-          </animated.Group>
+          </AnimatedGroup>
           <RegularPolygon
             x={200}
             y={0}
