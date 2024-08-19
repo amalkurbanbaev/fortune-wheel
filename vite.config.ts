@@ -10,6 +10,7 @@ export default defineConfig({
   build: {
     outDir: "./docs",
   },
+  base: "/fortune-wheel/",
   plugins: [react(), basicSsl()],
   resolve: {
     alias: {
